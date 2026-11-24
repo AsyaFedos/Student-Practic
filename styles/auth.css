@@ -1,0 +1,119 @@
+/* auth.css — стили страницы с формой регистрации/входа */
+
+/* Центрируем форму по экрану */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: var(--light);
+}
+
+/* Сама форма — «карточка» */
+#form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  background-color: var(--light-bg);
+  border-radius: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+}
+
+/* Поля ввода */
+#form input {
+  width: 100%;
+  padding: 20px 25px;
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 100%;
+  color: var(--dark);
+  background-color: #fff;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: #b3a49a;
+  }
+
+  &:hover {
+    border-color: rgba(254, 64, 102, 0.35);
+  }
+
+  &:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(254, 64, 102, 0.25);
+  }
+
+  &:user-invalid {
+    border-color: #e03131;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Общие стили кнопок — в духе .link-button */
+#form button {
+  padding: 20px 25px;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 100%;
+  text-align: center;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease,
+    color 0.2s ease, border-color 0.2s ease;
+
+  @media (max-width: 768px) {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+}
+
+/* Основная кнопка «Зарегистрироваться» */
+#form button[type="submit"] {
+  color: var(--light);
+  background-color: var(--primary);
+  border-color: var(--primary);
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 0 15px var(--primary);
+  }
+}
+
+/* Второстепенная кнопка «Войти» */
+#form button:not([type="submit"]) {
+  color: var(--primary);
+  background-color: transparent;
+  border-color: var(--primary);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--light);
+    background-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary);
+  }
+}
+
+/* Доступность: видимый фокус для кнопок (в style.css у button стоит outline: none) */
+#form button:focus-visible {
+  outline: 2px solid var(--dark);
+  outline-offset: 3px;
+}

@@ -1,6 +1,56 @@
-import events from "./events.json";
+const tbody = document.getElementById("tbody");
+const eventContent = document.getElementById("event-content");
 
-function makeEventTemplate(date, event) {
+window.addEventListener("load", () => {
+    fetch("/getEvents")
+        .then((response) => response.json())
+        .then((data) => {
+            tbody.innerHTML = "";
+            if (data.length == 0) {
+                tbody.innerHTML = "Программа не найдена";
+            } else {
+                data.forEach((event) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td>${event.time_event}</td>
+                    <td><p style="text-align: justify;">${event.title_event}</p></td>
+                    <td><p style="text-align: justify;">${event.description_event ?? ""}</p></td>
+                    <td>${event.speakers_event ?? ""}</td>`;
+                    tbody.appendChild(row);
+                });
+            }
+        })
+        .catch((error) => {
+            eventContent.textContent = "Ошибка: " + error;
+        });
+});
+
+document.getElementById("signUpBtn").addEventListener("click", (event) => {
+    event.preventDefault();
+    fetch("/signUp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            alert(data.message);
+            if (data.redirect) {
+                window.location.href = data.redirect;
+            }
+        })
+        .catch((err) => alert(err));
+});
+
+document.getElementById("exitAccountBtn").addEventListener("click", () => {
+    fetch("/exitAccount").then((response) => {
+        if (response.ok) {
+            window.location.href = "/auth";
+        } else {
+            alert("Ошибка при выходе");
+        }
+    });
+});
+
+/*function makeEventTemplate(date, event) {
   // Шаблон для основной информации о событии
   const dayInfoTemplate = `
     <div class="events__about-day">
@@ -82,4 +132,4 @@ buttons.forEach((btn) => btn.classList.remove("active"));
 buttons.find((btn) => btn.dataset.day === day).classList.add("active")
 
 
-content.innerHTML = makeEventTemplate(day, events[day]);
+content.innerHTML = makeEventTemplate(day, events[day]);*/

@@ -37,12 +37,10 @@
             производители Пермского и Российского интерьерного и строительного
             рынка
           </p>
-          <a
-            class="link-button"
-            href="https://t.me/archibookperm_bot"
-            target="_blank"
-            >Регистрация</a
-          >
+          <button id="signUpBtn" class="link-button">Записаться</button>
+          <br>
+          <br>
+          <button id="exitAccountBtn" class="link-button">Выйти из аккаунта</button>
         </div>
       </div>
       <footer>
@@ -114,25 +112,22 @@
       <div class="container">
         <header>
           <h2 class="events__title">Программа</h2>
-          <nav aria-label="Программа по дням проведения выставки">
-            <button class="day-button" data-day="2024-05-22">
-              <time datetime="2024-05-22">22.05</time>
-            </button>
-            <button class="day-button" data-day="2024-05-23">
-              <time datetime="2024-05-23">23.05</time>
-            </button>
-          </nav>
         </header>
         <div id="event-content" class="content">
-          <!-- Тут находится контент -->
+          <table style="width: 100%;" border="1px">
+            <thead>
+              <th>Время</th>
+              <th>Название</th>
+              <th>Описание</th>
+              <th>Спикер</th>
+            </thead>
+            <tbody id="tbody">
+              <!-- Тут находится контент -->
+            </tbody>
+          </table>
         </div>
         <footer>
-          <a
-            class="link-button"
-            href="https://t.me/archibookperm_bot"
-            target="_blank"
-            >Регистрация</a
-          >
+          
         </footer>
       </div>
     </section>
